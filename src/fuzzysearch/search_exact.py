@@ -24,7 +24,7 @@ def search_exact(subsequence, sequence, start_index=0, end_index=None):
     if not subsequence:
         raise ValueError('subsequence must not be empty')
 
-    if end_index is None:
+    if end_index is None or end_index < -1 or end_index > len(sequence):
         end_index = len(sequence)
 
     if isinstance(sequence, CLASSES_WITH_FIND):
@@ -62,7 +62,7 @@ else:
     _search_exact = search_exact
     @wraps(_search_exact)
     def search_exact(subsequence, sequence, start_index=0, end_index=None):
-        if end_index is None:
+        if end_index is None or end_index < -1 or end_index > len(sequence):
             end_index = len(sequence)
 
         try:
